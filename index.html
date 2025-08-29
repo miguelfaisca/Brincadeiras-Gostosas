@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brincadeiras Gostosas - Loja Completa</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Roboto', sans-serif; }
+.produto { transition: all 0.3s ease; cursor: pointer; }
+.produto:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+#modalImagem img { transition: transform 0.3s; }
+#carrinho { max-height: 400px; overflow-y: auto; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-thumb { background-color: #b91c1c; border-radius: 3px; }
+.btn-carrinho { width: 100%; padding: 0.5rem; margin-top: 0.25rem; border-radius: 0.375rem; transition: all 0.2s; }
+.btn-carrinho:hover { opacity: 0.9; }
+</style>
+</head>
+<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+
+<!-- Modal 18+ -->
+<div id="modalAdulto" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+<div class="bg-gray-800 text-white p-8 rounded-lg text-center max-w-md">
+<p class="mb-6 text-lg font-semibold">Este site é destinado a maiores de 18 anos. Você confirma que é maior de idade?</p>
+<button onclick="aceitar()" class="bg-red-700 hover:bg-red-600 px-4 py-2 rounded mr-2 transition-colors">Sim</button>
+<button onclick="negado()" class="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded transition-colors">Não</button>
+</div>
+</div>
+
+<!-- Modal da imagem -->
+<div id="modalImagem" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+<span onclick="fecharModalImagem()" class="absolute top-4 right-6 text-white text-3xl cursor-pointer">&times;</span>
+<img id="imagemModal" src="" alt="" class="max-h-[90%] max-w-[90%] rounded-lg shadow-lg" />
+</div>
+
+<header class="bg-red-900 text-white p-6 shadow-md">
+<h1 class="text-4xl font-bold text-center">Brincadeiras Gostosas</h1>
+<nav class="mt-3 text-center space-x-6">
+<a href="index.html" class="hover:underline">Catálogo</a>
+<a href="sobre.html" class="hover:underline">Sobre</a>
+<a href="contato.html" class="hover:underline">Contato</a>
+</nav>
+</header>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+<!-- Filtros -->
+<div class="flex flex-col md:flex-row justify-between items-center mb-6">
+<div>
+<label for="filtroCategoria" class="mr-3 font-semibold">Categoria:</label>
+<select id="filtroCategoria" onchange="filtrarProdutos()" class="border rounded px-3 py-1 text-black">
+<option value="todas">Todas</option>
+<option value="plugs">Plugs Anais</option>
+<option value="vibradores">Vibradores</option>
+<option value="dildos">Pênis de Borracha</option>
+<option value="lubrificantes">Lubrificantes</option>
+</select>
+</div>
+</div>
+
+<!-- Grid de produtos -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8" id="gridProdutos">
+
+<!-- ===== Dildos ===== -->
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/15cm.jpg" alt="Modelo 15cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 15cm</h3>
+<p class="text-sm text-gray-300">Produto realista, compacto e macio</p>
+<p class="text-red-400 font-bold mt-1">R$ 149,90</p>
+<button onclick="adicionarCarrinho('Modelo 15cm',149.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/18cm.jpg" alt="Modelo 18cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 18cm</h3>
+<p class="text-sm text-gray-300">Textura natural, com ventosa</p>
+<p class="text-red-400 font-bold mt-1">R$ 199,90</p>
+<button onclick="adicionarCarrinho('Modelo 18cm',199.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/20cm.jpg" alt="Modelo 20cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 20cm</h3>
+<p class="text-sm text-gray-300">Material firme, ideal para iniciantes e experts</p>
+<p class="text-red-400 font-bold mt-1">R$ 249,90</p>
+<button onclick="adicionarCarrinho('Modelo 20cm',249.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/25cm.jpg" alt="Modelo 25cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 25cm</h3>
+<p class="text-sm text-gray-300">Grande e resistente, com ventosa de fixação</p>
+<p class="text-red-400 font-bold mt-1">R$ 299,90</p>
+<button onclick="adicionarCarrinho('Modelo 25cm',299.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/42cm.jpg" alt="Modelo 42cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 42cm</h3>
+<p class="text-sm text-gray-300">Multicolorido e flexível, silicone ultra macio</p>
+<p class="text-red-400 font-bold mt-1">R$ 359,90</p>
+<button onclick="adicionarCarrinho('Modelo 42cm',359.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/45cm.jpg" alt="Modelo 45cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 45cm</h3>
+<p class="text-sm text-gray-300">Textura realista, base larga, ideal para desafios</p>
+<p class="text-red-400 font-bold mt-1">R$ 399,90</p>
+<button onclick="adicionarCarrinho('Modelo 45cm',399.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/50cm.jpg" alt="Modelo 50cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 50cm</h3>
+<p class="text-sm text-gray-300">Ultra extremo, reforçado, para quem aguenta tudo</p>
+<p class="text-red-400 font-bold mt-1">R$ 449,90</p>
+<button onclick="adicionarCarrinho('Modelo 50cm',449.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="dildos">
+<img src="img/75cm.jpg" alt="Modelo 75cm" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Modelo 75cm</h3>
+<p class="text-sm text-gray-300">Aniquilador Supremo, alarga Ânus</p>
+<p class="text-red-400 font-bold mt-1">R$ 699,90</p>
+<button onclick="adicionarCarrinho('Modelo 75cm',699.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<!-- ===== Plugs Anais ===== -->
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="plugs">
+<img src="img/plug1.jpg" alt="Plug Anal Silicone" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Plug Anal Silicone</h3>
+<p class="text-sm text-gray-300">Confortável, seguro e flexível</p>
+<p class="text-red-400 font-bold mt-1">R$ 69,90</p>
+<button onclick="adicionarCarrinho('Plug Anal Silicone',69.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="plugs">
+<img src="img/plug2.jpg" alt="Plug Anal Médio" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Plug Anal Médio</h3>
+<p class="text-sm text-gray-300">Tamanho médio, ideal para iniciantes</p>
+<p class="text-red-400 font-bold mt-1">R$ 79,90</p>
+<button onclick="adicionarCarrinho('Plug Anal Médio',79.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="plugs">
+<img src="img/plug3.jpg" alt="Plug Anal Grande" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Plug Anal Grande</h3>
+<p class="text-sm text-gray-300">Para usuários experientes, resistente e confortável</p>
+<p class="text-red-400 font-bold mt-1">R$ 99,90</p>
+<button onclick="adicionarCarrinho('Plug Anal Grande',99.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="plugs">
+<img src="img/plug4.jpg" alt="Plug Anal Médio Colorido" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Plug Anal Médio Colorido</h3>
+<p class="text-sm text-gray-300">Colorido, divertido e seguro</p>
+<p class="text-red-400 font-bold mt-1">R$ 89,90</p>
+<button onclick="adicionarCarrinho('Plug Anal Médio Colorido',89.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="plugs">
+<img src="img/plug5.jpg" alt="Plug Anal Pequeno" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Plug Anal Pequeno</h3>
+<p class="text-sm text-gray-300">Iniciante, flexível e seguro</p>
+<p class="text-red-400 font-bold mt-1">R$ 59,90</p>
+<button onclick="adicionarCarrinho('Plug Anal Pequeno',59.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<!-- ===== Vibradores ===== -->
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="vibradores">
+<img src="img/vibradorbullet.jpg" alt="Vibrador Bullet" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Vibrador Bullet</h3>
+<p class="text-sm text-gray-300">Pequeno, potente e discreto</p>
+<p class="text-red-400 font-bold mt-1">R$ 89,90</p>
+<button onclick="adicionarCarrinho('Vibrador Bullet',89.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="vibradores">
+<img src="img/vibradorrabbit.jpg" alt="Vibrador Rabbit" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Vibrador Rabbit</h3>
+<p class="text-sm text-gray-300">Estimulação dupla, potente e silencioso</p>
+<p class="text-red-400 font-bold mt-1">R$ 159,90</p>
+<button onclick="adicionarCarrinho('Vibrador Rabbit',159.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="vibradores">
+<img src="img/vibradorgspot.jpg" alt="Vibrador G Spot" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Vibrador G Spot</h3>
+<p class="text-sm text-gray-300">Curvado para estimulação do ponto G</p>
+<p class="text-red-400 font-bold mt-1">R$ 139,90</p>
+<button onclick="adicionarCarrinho('Vibrador G Spot',139.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="vibradores">
+<img src="img/vibradormini.jpg" alt="Vibrador Mini" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Vibrador Mini</h3>
+<p class="text-sm text-gray-300">Discreto, portátil e potente</p>
+<p class="text-red-400 font-bold mt-1">R$ 79,90</p>
+<button onclick="adicionarCarrinho('Vibrador Mini',79.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="vibradores">
+<img src="img/vibradormulti.jpg" alt="Vibrador Multi Velocidade" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Vibrador Multi Velocidade</h3>
+<p class="text-sm text-gray-300">Vários modos de vibração, recarregável</p>
+<p class="text-red-400 font-bold mt-1">R$ 199,90</p>
+<button onclick="adicionarCarrinho('Vibrador Multi Velocidade',199.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<!-- ===== Lubrificantes ===== -->
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="lubrificantes">
+<img src="img/lubrificanteagua.jpg" alt="Lubrificante Água" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Lubrificante à base de água</h3>
+<p class="text-sm text-gray-300">Ideal para todos os brinquedos</p>
+<p class="text-red-400 font-bold mt-1">R$ 39,90</p>
+<button onclick="adicionarCarrinho('Lubrificante Água',39.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="lubrificantes">
+<img src="img/lubrificantesilicone.jpg" alt="Lubrificante Silicone" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Lubrificante à base de silicone</h3>
+<p class="text-sm text-gray-300">Duradouro, ideal para práticas prolongadas</p>
+<p class="text-red-400 font-bold mt-1">R$ 49,90</p>
+<button onclick="adicionarCarrinho('Lubrificante Silicone',49.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="lubrificantes">
+<img src="img/lubrificantecheiro.jpg" alt="Lubrificante Aromatizado" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Lubrificante Aromatizado</h3>
+<p class="text-sm text-gray-300">Com sabor, ideal para beijo e brincadeiras</p>
+<p class="text-red-400 font-bold mt-1">R$ 44,90</p>
+<button onclick="adicionarCarrinho('Lubrificante Aromatizado',44.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="lubrificantes">
+<img src="img/lubrificantegel.jpg" alt="Lubrificante Gel" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Lubrificante Gel</h3>
+<p class="text-sm text-gray-300">Textura mais densa, prolonga a sensação</p>
+<p class="text-red-400 font-bold mt-1">R$ 59,90</p>
+<button onclick="adicionarCarrinho('Lubrificante Gel',59.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+<div class="produto bg-gray-800 rounded-xl shadow-lg overflow-hidden" data-categoria="lubrificantes">
+<img src="img/lubrificantevera.jpg" alt="Lubrificante com Aloe Vera" class="w-full h-64 object-cover" onclick="abrirModalImagem(this.src,this.alt)" />
+<div class="p-4">
+<h3 class="text-lg font-semibold text-white">Lubrificante com Aloe Vera</h3>
+<p class="text-sm text-gray-300">Calmante e hidratante para peles sensíveis</p>
+<p class="text-red-400 font-bold mt-1">R$ 54,90</p>
+<button onclick="adicionarCarrinho('Lubrificante Aloe Vera',54.90)" class="btn-carrinho bg-red-700 text-white hover:bg-red-600">Adicionar ao carrinho</button>
+</div>
+</div>
+
+</div>
+
+<!-- Carrinho -->
+<div id="carrinho" class="mt-8 p-4 bg-gray-800 rounded-lg shadow-lg">
+<h3 class="text-xl font-bold text-white mb-2">Carrinho</h3>
+<ul id="itensCarrinho" class="list-disc list-inside text-gray-300"></ul>
+<p id="totalCarrinho" class="text-red-400 font-bold mt-2">Total: R$ 0,00</p>
+<div class="flex gap-2 mt-2">
+<button onclick="finalizarCompra()" class="flex-1 bg-red-700 hover:bg-red-600 text-white py-2 rounded">Finalizar Compra</button>
+<button onclick="esvaziarCarrinho()" class="flex-1 bg-gray-600 hover:bg-gray-500 text-white py-2 rounded">Esvaziar Carrinho</button>
+</div>
+</div>
+
+</main>
+
+<footer class="bg-red-950 mt-10 p-6 text-center text-sm text-gray-300">
+<p>© 2025 Brincadeiras Gostosas - Todos os direitos reservados.</p>
+<p>Este site é destinado a maiores de 18 anos. Compra segura, discreta e com total descrição.</p>
+<p>Contato via WhatsApp: (16) 98874-9041</p>
+</footer>
+
+<script>
+function aceitar(){ document.getElementById('modalAdulto').style.display='none'; }
+function negado(){ document.body.innerHTML='<h1 class="text-center text-2xl mt-20 text-red-500">Acesso negado. Conteúdo apenas para maiores de 18 anos.</h1>'; }
+
+function abrirModalImagem(src, alt){ document.getElementById('imagemModal').src=src; document.getElementById('imagemModal').alt=alt; document.getElementById('modalImagem').style.display='flex'; }
+function fecharModalImagem(){ document.getElementById('modalImagem').style.display='none'; }
+
+let carrinho=[];
+function adicionarCarrinho(nome, preco){ carrinho.push({nome, preco}); atualizarCarrinho(); }
+function removerItem(index){ carrinho.splice(index,1); atualizarCarrinho(); }
+function esvaziarCarrinho(){ carrinho=[]; atualizarCarrinho(); }
+function atualizarCarrinho(){
+const lista=document.getElementById('itensCarrinho'); lista.innerHTML=''; let total=0;
+carrinho.forEach((item,index)=>{ lista.innerHTML+=`<li>${item.nome} - R$ ${item.preco.toFixed(2)} <button onclick="removerItem(${index})" class="ml-2 text-xs text-red-400 hover:text-red-600">Remover</button></li>`; total+=item.preco; });
+document.getElementById('totalCarrinho').innerText=`Total: R$ ${total.toFixed(2)}`;
+}
+function finalizarCompra(){
+if(carrinho.length===0){ alert("Carrinho vazio!"); return; }
+let texto="Olá, quero comprar:\n"; carrinho.forEach(item=>{ texto+=`${item.nome} - R$ ${item.preco.toFixed(2)}\n`; });
+texto+=document.getElementById('totalCarrinho').innerText;
+window.open(`https://wa.me/5516988749041?text=${encodeURIComponent(texto)}`);
+}
+
+function filtrarProdutos(){
+const categoria=document.getElementById('filtroCategoria').value;
+const produtos=document.querySelectorAll('.produto');
+produtos.forEach(p=>{ if(categoria==='todas'||p.getAttribute('data-categoria')===categoria){p.style.display='block';} else{p.style.display='none';} });
+}
+</script>
+</body>
+</html>
